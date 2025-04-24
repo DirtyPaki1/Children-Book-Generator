@@ -1,0 +1,43 @@
+{
+  "name": "children-book-generator",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "next build",
+    "dev": "next dev",
+    "lint": "next lint",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@clerk/nextjs": "^5.3.7",
+    "@clerk/themes": "^2.1.25",
+    "@pinecone-database/pinecone": "^1.1.2",
+    "@upstash/ratelimit": "^2.0.2",
+    "@vercel/analytics": "^1.0.2",
+    "html-react-parser": "^5.1.15",
+    "next": "^14.2.7",
+    "openai": "^4.57.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-pageflip": "^2.0.3",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.10",
+    "@types/eslint": "^9.6.1",
+    "@types/node": "^22.5.1",
+    "@types/prettier": "^3.0.0",
+    "@types/react": "^18.2.6",
+    "@types/react-dom": "^18.2.4",
+    "@typescript-eslint/eslint-plugin": "^8.3.0",
+    "@typescript-eslint/parser": "^8.3.0",
+    "autoprefixer": "^10.4.14",
+    "eslint": "^9.0.0",
+    "eslint-config-next": "^14.2.1",
+    "postcss": "^8.4.35",
+    "prettier": "^3.3.3",
+    "prettier-plugin-tailwindcss": "^0.6.6",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5.0.4"
+  }
+}
