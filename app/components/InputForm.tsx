@@ -1,5 +1,11 @@
 import { useState, FormEvent } from "react";
-import { FaMagic, FaChild, FaBook, FaLightbulb, FaSpinner } from "react-icons/fa";
+import { 
+  FaMagic, 
+  FaChild, 
+  FaBook, 
+  FaLightbulb, 
+  FaSpinner 
+} from "react-icons/fa";
 
 type StoryPage = {
   text: string;
@@ -20,7 +26,6 @@ export default function InputForm({ setStoryPages }: InputFormProps) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // Detailed story elements for each theme
   const getThemeElements = (theme: string) => {
     const elements = {
       adventure: {
@@ -51,7 +56,6 @@ export default function InputForm({ setStoryPages }: InputFormProps) {
     return elements[theme as keyof typeof elements] || elements.adventure;
   };
 
-  // Generate story with detailed progression
   const generateStoryContent = (): {text: string, keywords: string[]}[] => {
     const { name, age, description, theme } = formData;
     const protagonist = name || (parseInt(age) < 5 ? "Lily" : "Max");
@@ -79,7 +83,6 @@ export default function InputForm({ setStoryPages }: InputFormProps) {
     ];
   };
 
-  // Precise image selection with scene matching
   const getImageForPage = (keywords: string[], theme: string, index: number): string => {
     const baseUrl = "https://img.freepik.com/free-vector/";
     const [scene, item, location] = keywords;

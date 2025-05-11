@@ -4,22 +4,16 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "**", // Allows all HTTPS images (consider restricting for production)
+        hostname: "**",
       },
-    ],
-    // Optional: Add if using Next.js Image Optimization
-    domains: [
-      'img.freepik.com', // Your image CDN domain
-      'images.unsplash.com' // Example additional domain
     ],
   },
   eslint: {
-    ignoreDuringBuilds: true, // Bypass ESLint during builds
+    ignoreDuringBuilds: true,
   },
   typescript: {
-    ignoreBuildErrors: true, // Bypass TypeScript errors during builds
+    ignoreBuildErrors: true,
   },
-  // Security headers (recommended)
   async headers() {
     return [
       {
@@ -36,16 +30,7 @@ const nextConfig = {
         ],
       },
     ]
-  },
-  // Environment variable mapping (optional)
-  env: {
-    // Reference: process.env.NEXT_PUBLIC_EXAMPLE
   }
 };
 
-// For analyzing bundle size (optional dev dependency)
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.ANALYZE === 'true',
-});
-
-module.exports = withBundleAnalyzer(nextConfig);
+module.exports = nextConfig; // Removed withBundleAnalyzer wrapper
