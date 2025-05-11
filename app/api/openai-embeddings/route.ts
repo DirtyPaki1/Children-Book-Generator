@@ -1,22 +1,40 @@
 import { NextResponse } from 'next/server';
-import OpenAI from "openai";
+import OpenAI from 'openai';
+
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY
+});
 
 export const runtime = 'edge';
 
-export async function POST(req: Request, res: Response) {
-  const openai = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY
-  });
+export async function POST(req: Request) {
+  try {
+    const { prompt, size } = await req.json();
+    
+    console.log("Generating image for prompt:", prompt); // Debug log
+    
+    const response = await openai.images.generate({
+      model: "dall-e-3",
+      prompt: prompt,
+      size: size || "1024x1024",
+      quality: "standard",
+      n: 1
+    });
 
-  const body = await req.text();
-  const { prompt } = JSON.parse(body);
-  
-  const response = await openai.embeddings.create({
-    model: 'text-embedding-ada-002',
-    input: prompt
-  });
-  console.log('response:', response);
-  const embedding = response?.data?.[0]?.embedding;
-  console.log('embedding:', embedding);
-  return NextResponse.json({ embedding });
-};
+    const imageUrl = response.data[0].url;
+    console.log("Generated image URL:", imageUrl); // Debug log
+    
+    if (!imageUrl) {
+      throw new Error("No image URL returned");
+    }
+
+    return NextResponse.json({ imageUrl });
+    
+  } catch (error: any) {
+    console.error("OpenAI API Error:", error);
+    return NextResponse.json(
+      { error: error.message || "Image generation failed" },
+      { status: 500 }
+    );
+  }
+}
